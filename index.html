@@ -39,7 +39,11 @@
 
   function init() {
     var video = document.getElementById('video');
-    video.play();
+    const playPromise = video.play();
+    if (playPromise !== null) {
+      playPromise.catch(() => {
+        video.play();
+      });
   }
 
   function typeWriter() {
