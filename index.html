@@ -1,0 +1,67 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="vid-container">
+
+    <div class="inner-container" id="inner-container">
+      <div class="logo-container" id="logo-container">
+        <div class="logo-piece top">
+          <img class="logo" src="l1.png" id="l1">
+        </div>
+        <div class="box" hidden id="login-box">
+          <h3 class="login-header"></h3>
+          <input type="text" placeholder="Username" />
+          <input type="password" placeholder="Password" />
+          <button class="login-btn">Login</button>
+        </div>
+        <div class="logo-piece bottom">
+          <img class="logo" src="l2.png" id="l2">
+        </div>
+      </div>
+
+    </div>
+    <audio autoplay id="audio">
+      <source src="Star_Wars_original_opening_crawl_1977.ogg" type="audio/ogg">
+    </audio>
+    <video class="bgvid" autoplay="autoplay" muted="muted" preload="auto" loop>
+      <source src="Pexels%20Videos%204338.webm" type="video/webm">
+    </video>
+  </div>
+</body>
+<script type="text/javascript">
+  var i = 0;
+  var loginText = 'Welcome Aboard The Millenium Falcon. May the force be with you.';
+  var typingSpeed = 100;
+
+  function typeWriter() {
+    if (i < loginText.length) {
+      $('.login-header').append(loginText.charAt(i));
+      i++;
+      setTimeout(typeWriter, typingSpeed);
+    }
+  }
+
+  $('#logo-container').on('click',() => {
+    var media = document.getElementById("audio");
+    media.currentTime = 10;
+    const playPromise = media.play();
+    if (playPromise !== null) {
+      playPromise.catch(() => {
+        media.play();
+      })
+    };
+    $('#inner-container').addClass('color');
+    $('#login-box').show(1300, 'swing', () => {
+      typeWriter();
+    });
+    $('#logo-container').off('click');
+  });
+
+</script>
+
+</html>
