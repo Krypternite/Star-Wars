@@ -5,7 +5,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
-<body>
+<body onload="init()">
   <div class="vid-container">
 
     <div class="inner-container" id="inner-container">
@@ -39,6 +39,11 @@
   var loginText = 'Welcome Aboard The Millenium Falcon. May the force be with you.';
   var typingSpeed = 100;
 
+  function init() {
+    var video = document.getElementById('video');
+    video.play();
+  }
+
   function typeWriter() {
     if (i < loginText.length) {
       $('.login-header').append(loginText.charAt(i));
@@ -47,7 +52,7 @@
     }
   }
 
-  $('#logo-container').on('click',() => {
+  $('#logo-container').on('click', () => {
     var media = document.getElementById("audio");
     media.currentTime = 10;
     const playPromise = media.play();
